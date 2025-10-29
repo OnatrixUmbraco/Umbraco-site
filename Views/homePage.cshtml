@@ -1,0 +1,23 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HomePage>
+@{
+	Layout = "mainLayout.cshtml";
+}
+
+<section class="hero" style="Background-image:url('@(Model.HeroImage?.Url() ?? "")')">
+	<div class="page-wrapper">
+		<div class="px-3 hero-container">
+			<div class="col-d d-flex flex-column gap-4">
+				<h1 class="display-2 fw-bold lh-1 hero-header" style="color:#4F5955;">
+					@Model.HeroTitle</h1>
+				<div class="hero-text">
+					@Html.Raw(Model.HeroText)</div>
+				@if (Model.HeroLink != null)
+				{
+					<a class="text-white py-3 px-10 no-underline rounded cursor-pinter" style="color:#4F5955;"
+						href="@Model.HeroLink.Url">@Model.HeroLink.Name</a>
+				}
+			</div>
+		</div>
+</section>
+</div>
