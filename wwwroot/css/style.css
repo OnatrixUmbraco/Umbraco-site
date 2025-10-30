@@ -19,11 +19,6 @@ body {
   align-items: center;
 }
 
-section img {
-  width: 100%;
-  object-fit: cover;
-}
-
 .hero-container {
   position: relative;
   z-index: 10;
@@ -38,4 +33,61 @@ section img {
   display: flex;
   max-width: 33.1875rem;
   width: 100%;
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb li.sep {
+  opacity: 0.6;
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  outline: none;
+  color: #535656;
+  font-size: 14px;
+}
+
+.breadcrumb .fa-solid.fa-chevron-right {
+  font-size: 10px;
+}
+
+.breadcrumb li.active {
+  color: #d9c3a9;
+  font-weight: 600;
+}
+
+.contact {
+  background-color: #f7f7f7;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  min-height: 15.3125rem;
+}
+
+.contact-header-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
