@@ -1,0 +1,27 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Routing
+@inject IPublishedUrlProvider PublishedUrlProvider
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>
+
+@{
+    var trail = Model.Ancestors()
+    .OrderBy(x => x.Level)
+    .ToList();
+}
+
+@if (trail.Any())
+{
+    <section class="page-title">
+        <div class="breadcrumb-container">
+            <ul class="breadcrumb">
+                @foreach (var node in trail)
+                {
+                    var text = node.Level == 1 ? "Home" : node.Name;
+                    <li><a class="breadcrumb-link" href="@node.Url(PublishedUrlProvider)">@text</a></li>
+                }
+                <span><i class="fa-solid fa-chevron-right"></i></span>
+                <li class="active">@Model.Name</li>
+            </ul>
+        </div>
+    </section>
+}
