@@ -22,4 +22,30 @@
 			</div>
 		</div>
 </section>
+<section class="d-flex about-us">
+	<div class="about-us-container">
+		<p class="fw-bold about-eyebrow" style="color:#D9C3A9">
+			@Model.AboutEyebrow
+		</p>
+		<h2 class="fw-bold about-heading fs-1 mt-1" style="color:#4F5955">
+			@Model.AboutHeading
+		</h2>
+		<div class="fs-5 fw-light about-quote" style="color:#535656">
+			@Html.Raw(Model.AboutQuote)
+		</div>
+		<p class="mt-3 about-body" style="color:#535656">
+			@Model.AboutBody
+		</p>
+		@if (Model.AboutSignatureImage != null)
+		{
+			<img class="mt-3" src="@Model.AboutSignatureImage.Url()" alt="Signature" />
+		}
+		<p class="about-author" style="color:#535656">
+			@Model.AboutAuthor
+		</p>
+	</div>
+	<div class="about-us-form-container">
+		@await Html.PartialAsync("Partials/static/callbackForm", Model)
+	</div>
+</section>
 </div>
