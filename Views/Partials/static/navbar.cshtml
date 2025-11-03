@@ -1,0 +1,40 @@
+@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Routing
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var root = Model.Root();
+    var items = root?.Children()?.Where(x => x.IsVisible()) ??
+    Enumerable.Empty<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>();
+
+}
+<div class="upper-nav">
+    <div class="nav-address d-flex" style="background-color:#4F5955">
+        <p class="py-3" style="color:#fff">
+            Klarabergsviadukten 90, 111 64 Stockholm
+        </p>
+        <div class="socials">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-linkedin-in"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+        </div>
+    </div>
+</div>
+<nav class="shadow-sm navbar">
+    <div class="d-flex nav-container">
+        <a class="d-flex gap-1 logo-container" href="@(root?.Url() ?? Url.Content("~/"))">
+            <img src="../media/images/onatrix-logo.svg" alt="Logo">
+            <img src="../media/images/onatrix-text.svg" alt="Logo">
+        </a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            @foreach (var node in items)
+            {
+                var url = node.Url();
+                var isActive = node.IsAncestorOrSelf(Model);
+                <li class="nav-item">
+                    <a class="nav-link @(isActive ? "active" : null)" href="@url">@node.Name</a>
+                </li>
+            }
+        </ul>
+        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+</nav>
