@@ -14,8 +14,10 @@
 					@Html.Raw(Model.HeroText)</div>
 				@if (Model.HeroLink != null)
 				{
-					<a class="text-white py-3 px-10 no-underline rounded cursor-pinter" style="color:#4F5955;"
-						href="@Model.HeroLink.Url">@Model.HeroLink.Name</a>
+					<button class="contact-us-button">
+						<a class="text-white cursor-pinter fs-6 fw-bold text-decoration-none"
+							href="@Model.HeroLink.Url">@Model.HeroLink.Name</a>
+					</button>
 				}
 			</div>
 		</div>

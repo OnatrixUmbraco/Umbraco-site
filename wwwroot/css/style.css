@@ -35,6 +35,18 @@ body {
   width: 100%;
 }
 
+.contact-us-button {
+  display: flex;
+  padding: 15px 40px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 3px;
+  background: #4f5955;
+  border: none;
+  width: 11.375rem;
+  height: 3.5625rem;
+}
+
 .contact {
   display: flex;
   justify-content: center;
