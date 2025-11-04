@@ -4,11 +4,4 @@
 	Layout = "mainLayout.cshtml";
 }
 
-<section class="contact" style="Background-image:url('@(Model.BackgroundImage?.Url() ?? "")')">
-	<div class="page-wrapper">
-		<div class="contact-header-container">
-			<h1 class=" mb-2 fw-bold contact-header" style="color:#4F5955;">@Model.BannerTitle</h1>
-			@await Html.PartialAsync("Partials/static/breadcrumb", Model)
-		</div>
-</section>
-</div>
+@Html.GetBlockListHtml(Model.Sections)
