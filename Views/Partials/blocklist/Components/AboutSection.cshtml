@@ -1,0 +1,32 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@{
+    var content = (ContentModels.AboutSection)Model.Content;
+}
+
+<section class="d-flex about-us">
+    <div class="about-us-container">
+        <p class="fw-bold about-eyebrow" style="color:#D9C3A9">
+            @content.AboutEyebrow
+        </p>
+        <h2 class="fw-bold about-heading fs-1 mt-1" style="color:#4F5955">
+            @content.AboutHeading
+        </h2>
+        <div class="fs-5 fw-light about-quote" style="color:#535656">
+            @Html.Raw(content.AboutQuote)
+        </div>
+        <p class="mt-3 about-body" style="color:#535656">
+            @content.AboutBody
+        </p>
+        @if (content.AboutSignatureImage != null)
+        {
+            <img class="mt-3" src="@content.AboutSignatureImage.Url()" alt="Signature" />
+        }
+        <p class="about-author" style="color:#535656">
+            @content.AboutAuthor
+        </p>
+    </div>
+    <div class="about-us-form-container">
+        @await Html.PartialAsync("Partials/static/callbackForm", Model)
+    </div>
+</section>
