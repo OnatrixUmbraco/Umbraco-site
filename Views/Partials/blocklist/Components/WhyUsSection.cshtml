@@ -1,0 +1,25 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.WhyUsSection)Model.Content;
+}
+
+<section class="why-us">
+    <div class="d-flex  flex-column align-item-center justify-content-center why-us-container"
+        style="Background-image:url('@(content.WhyUsBackgroundImage?.Url() ?? "")')">
+        <div class="why-us-text">
+            <p class="text-center fw-bold why-us-eyebrow">@content.WhyUsEyebrow</p>
+            <p class="text-center fw-bold clients-number">@content.ClientsNumber</p>
+            <div class="text-center mt-4 fs-6 why-us-lead">
+                @Html.Raw(content.WhyUsLead)</div>
+
+        </div>
+        <button class="our-story">
+            <a class="fs-6 fw-bold" href="#success-stories">Read our story</a>
+            </a>
+        </button>
+        <img src=@content.WhyUsPrimaryImage!.Url() />
+        </>
+    </div>
+</section>
