@@ -1,0 +1,23 @@
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.SuccessStories)Model.Content;
+}
+
+<section id="success-stories">
+    <div class="d-flex  flex-column align-item-center justify-content-flex-start success-stories-container"
+        style="Background-image:url('@(content.SuccessStoryBackground?.Url() ?? "")')">
+        <p class="fw-bold success-story-eyebrow">@content.SuccessStoriesEyebrow</p>
+        <p class="text-white fw-bold success-story-title">@content.SuccessStoriesTitle</p>
+        <div class="stat-items">
+            @Html.GetBlockListHtml(content.StatItems)
+        </div>
+         <img src="@content.SuccessStoryImage!.Url()" /> /*
+    </div>
+
+</section>
+<div class="bg-white brands-logos-section">
+    <div class="brands-logos-container">
+        @Html.GetBlockListHtml(content.BrandLogos)
+    </div>
+</div>
