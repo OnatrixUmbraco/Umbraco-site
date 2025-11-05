@@ -1,0 +1,11 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.StatItem)Model.Content;
+}
+
+<article class="d-flex flex-column stat-item">
+    <div class="stat-number text-center fw-semibold">@content.StatNumber</div>
+    <div class="stat-text text-center text-white">@content.StatText</div>
+</article>
