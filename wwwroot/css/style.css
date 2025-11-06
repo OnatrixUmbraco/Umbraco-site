@@ -71,7 +71,8 @@ a {
 .service-container,
 .why-us-container,
 .success-stories-container,
-.brands-logos-container {
+.brands-logos-container,
+.contact-info-container {
   width: var(--container);
   margin: 0 auto;
 }
@@ -490,4 +491,63 @@ a {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5.3125rem;
+}
+
+.contact-info {
+  height: 44.5625rem;
+}
+
+.contact-info-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.contact-info-background,
+.contact-info-pattern,
+.contact-info-subject {
+  position: absolute;
+}
+
+.contact-info-pattern {
+  z-index: 1;
+  right: 9.8125rem;
+  bottom: -21.875rem;
+}
+
+.contact-info-background {
+  z-index: 2;
+  bottom: -22.25rem;
+  left: 80px;
+}
+
+.contact-info-subject {
+  z-index: 3;
+  bottom: -22.25rem;
+  left: 80px;
+}
+
+.contact-info-item-label {
+  font-size: 14px;
+}
+
+.contact-info-item-value {
+  padding-left: 25px !important;
+  font-size: 14px;
+}
+
+.contact-info-text-container
+  .contact-info-item:not(:first-child)
+  .contact-info-item-value {
+  font-style: italic;
+}
+
+.contact-info-text-container .umb-block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contact-info-title {
+  margin-bottom: 1.875rem;
+  max-width: 29.375rem;
 }

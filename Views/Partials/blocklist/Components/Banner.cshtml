@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
 @{
-	var content = (ContentModels.ContactBanner)Model.Content;
+	var content = (ContentModels.Banner)Model.Content;
 }
 
 <section class="contact" style="Background-image:url('@(content.BackgroundImage?.Url() ?? "")')">

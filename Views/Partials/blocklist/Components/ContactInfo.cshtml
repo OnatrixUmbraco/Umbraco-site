@@ -1,0 +1,22 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.ContactInfo)Model.Content;
+    var settings = Model.Settings as ContentModels.ContactInfoSettings;
+    var sectionColor = settings?.ContactInfoBackgroundColor?.Color ?? "fff";
+}
+
+<section class="d-flex justify-content-center align-items-center contact-info" style="background:@sectionColor">
+    <div class="d-flex align-items-center justify-content-between contact-info-container">
+        <div class="contact-info-image-container">
+            <img class="contact-info-background" src="@content.ContactInfoBackgroundImage!.Url()" />
+            <img class="contact-info-subject" src="@content.ContactInfoSubjectImage!.Url()" />
+            <img class="contact-info-pattern" src="@content.ContactInfoBackgroundPattern!.Url()" />
+        </div>
+        <div class="contact-info-text-container">
+            <h2 class="contact-info-title">@content.ContactInfoTitle</h2>
+            @Html.GetBlockListHtml(content.ContactInfoElements)
+        </div>
+    </div>
+</section>
