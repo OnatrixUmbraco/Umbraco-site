@@ -73,7 +73,8 @@ a {
 .success-stories-container,
 .brands-logos-container,
 .contact-info-container,
-.contact-map-container {
+.contact-map-container,
+.about-header-container {
   width: var(--container);
   margin: 0 auto;
 }
@@ -626,4 +627,35 @@ a {
 
 .contact-brand-logos-container .umb-block-list {
   margin-bottom: 3.25rem;
+}
+
+.about-header {
+  padding-bottom: 10.3125rem;
+  padding-top: 6.8125rem;
+}
+
+.about-header-container {
+  height: 38.125rem;
+  gap: 50px;
+}
+
+.about-header-image-container {
+  gap: 12px;
+}
+
+.about-header-container img {
+  max-width: 400px;
+}
+
+.about-header-eyebrow {
+  font-size: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.about-header-lead {
+  font-size: 14px;
+}
+
+.about-header hr {
+  color: #fff;
 }
