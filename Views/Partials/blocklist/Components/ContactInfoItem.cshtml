@@ -1,0 +1,15 @@
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.ContactInfoItem)Model.Content;
+}
+
+<div class="d-flex gap-1 flex-column contact-info-item">
+    <div class="d-flex gap-2 contact-info-item-label-container">
+        <img src="@content?.ContactInfoItemIcon!.Url()" class="contact-info-item-icon"></img>
+        <p class="fw-semibold contact-info-item-label">@content?.ContactInfoItemLabel</p>
+    </div>
+    <div class="contact-info-item-value-container">
+        <p class="contact-info-item-value">@content?.ContactInfoItemValue</p>
+    </div>
+</div>
