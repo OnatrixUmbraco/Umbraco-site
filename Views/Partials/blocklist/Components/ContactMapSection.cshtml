@@ -1,0 +1,39 @@
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.ContactMapSection)Model.Content;
+}
+
+<section class="contact-map-section" style="Background-image:url('@(content.ContactMapImage?.Url() ?? "")')">
+    <div class="d-flex flex-column align-item-center justify-content-flex-start bg-white shadow contact-map-container">
+        <div class="d-flex flex-column gap-1 contact-map-text-container ">
+            <p class="fw-bold contact-map-eyebrow">@content.ContactMapEyebrow</p>
+            <h2 class="text-center fw-bold contact-map-title">@content.ContactMapTitle</h2>
+            <div class="text-center contact-map-lead">
+                @Html.Raw(@content.ContactMapLead)
+            </div>
+        </div>
+        <div class="d-flex justify-content-center form-input">
+            <div class="d-flex flex-column form-input-1">
+                <input type="text" id="name" name="name" placeholder="Name" />
+                <input type="email" id="email" name="email" placeholder="Email address" />
+            </div>
+            <div class="d-flex flex-column form-input-2">
+                <input type="tel" id="phone" name="phone" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                <select name="consultation-option" id="consultation-option">
+                    <option value="financial-consulting">Financial consulting</option>
+                </select>
+            </div>
+        </div>
+        <button
+            class="d-flex justify-content-md-center align-items-center w-100 border-0 rounded fs-6 fw-bold submit">Submit</button>
+    </div>
+</section>
+<div class="contact-brand-logos-container">
+    <div class="bg-white brands-logos-section">
+        <div class="brands-logos-container">
+
+            @Html.GetBlockListHtml(content.BrandLogos)
+        </div>
+    </div>
+</div>
