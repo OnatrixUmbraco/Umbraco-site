@@ -4,3 +4,34 @@
 @{
     var content = (ContentModels.TestimonialsSection)Model.Content;
 }
+
+<section class="testimonials">
+    <div class="d-flex testimonials-container">
+        <div class="testimonials-text-container">
+            <p class="fw-bold testimonials-eyebrow">
+                @content.TestimonialsEyebrow
+            </p>
+            <h2 class="testimonials-title">
+                @content.TestimonialsTitle
+            </h2>
+            <div class="fw-light fst-italic testimonials-lead">
+                @Html.Raw(@content.TestimonialsLead)
+            </div>
+            <div class="testimonials-rating">
+                @foreach (var item in Enumerable.Range(1, @content.TestimonialsRating))
+                {
+                    <i class="fa-solid fa-star"></i>
+                }
+            </div>
+            <p class="testimonial-author-name">
+                @content.TestimonialsAuthorName
+            </p>
+            <p class="fst-italic testimonial-author-role">
+                @content.TestimonialsAuthorRole
+            </p>
+        </div>
+        <div class="testimonials-image-container">
+            <img src="@content.TestimonialsImage!.Url()" />
+        </div>
+    </div>
+</section>
