@@ -74,7 +74,8 @@ a {
 .brands-logos-container,
 .contact-info-container,
 .contact-map-container,
-.about-header-container {
+.about-header-container,
+.team-member-container {
   width: var(--container);
   margin: 0 auto;
 }
@@ -675,6 +676,7 @@ a {
   justify-content: flex-end;
   height: 43.75rem;
   gap: 15px;
+  padding-left: 0.625rem;
 
   @media only screen and (min-width: 1080px) and (max-width: 2160px) {
     height: 33.125rem;
@@ -718,4 +720,30 @@ a {
 .testimonial-author-role {
   font-size: 20px;
   color: #2d303a;
+}
+
+.team-eyebrow {
+  font-size: 14px;
+  color: var(--brand-gold);
+}
+
+.team-title h3 {
+  font-size: 40px;
+}
+.team-member-card {
+  height: 100%;
+  border: 1px solid #eaeaea;
+}
+
+.members-grid {
+  margin-bottom: 5.3125rem;
+}
+
+.team-member-name {
+  font-size: 18px;
+  margin-top: 1.25rem;
+}
+
+.team-member-role {
+  color: var(--note-color);
 }
