@@ -1,0 +1,25 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.AboutHeader)Model.Content;
+}
+
+<section class="about-header">
+    <div class="d-flex about-header-container">
+        <div class="d-flex flex-column about-header-image-container">
+            <img src="@content.AboutHeaderImage!.Url()" />
+            <p class="fs-6 fst-italic about-founder-text">
+                @content.AboutFounderText
+            </p>
+        </div>
+        <div class="about-header-text-container">
+            <p class="fw-light fst-italic about-header-eyebrow">
+                @content.AboutEyebrow
+            </p>
+            <div class="about-header-lead">
+                @Html.Raw(@content.AboutLead)
+            </div>
+        </div>
+    </div>
+</section>
