@@ -3,4 +3,32 @@
 
 @{
     var content = (ContentModels.TeamSection)Model.Content;
+    var teamList = content.TeamMemberList;
 }
+
+<section class="team-member-section">
+    <div class="team-member-container">
+        <div class="d-flex flex-column align-items-center">
+            <h2 class="m-0 team-eyebrow">@content.TeamEyebrow</h2>
+            <div class="team-title">
+                <h3>@Html.Raw(@content.TeamTitle)
+                </h3>
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap pt-3 gap-4 members-grid">
+            @if (teamList != null)
+            {
+                for (var i = 0; i < teamList.Count; i++)
+                {
+                    var member = teamList[i];
+                    var colClass = i < 3 ? "w-1/3" : "w-1/4";
+
+                    <div class="@colClass">
+                        <partial name="Partials/Blocklist/Components/TeamMember" model="member" />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
