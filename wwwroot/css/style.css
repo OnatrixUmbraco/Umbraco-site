@@ -773,7 +773,6 @@ a {
   justify-content: flex-start;
   width: 75%;
   padding-left: 54px;
-  margin: 0 auto;
   margin-top: 4.8125rem;
 }
 
@@ -828,9 +827,82 @@ a {
 
 .about-us-aside {
   display: flex;
+  justify-content: flex-end;
   margin: 0;
-  width: 51%;
+  width: 41%;
+  padding-right: 2.5rem;
+  margin-top: 4.8125rem;
   @media only screen and (min-width: 1080px) and (max-width: 2160px) {
     max-width: 45rem;
   }
+}
+.aside-about-header {
+  font-size: 22px;
+}
+
+.aside-about-image {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.aside-about-body {
+  max-width: 19.125rem;
+  font-size: 14px;
+}
+
+.aside-about-help-container {
+  background-color: var(--brand-dark);
+  width: 100%;
+  margin-top: 2.8125rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  max-width: 19.125rem;
+  border-radius: 3px;
+  background-repeat: no-repeat !important;
+  background-position: bottom right;
+}
+
+.aside-about-help-header {
+  color: var(--sub-color);
+  font-size: 22px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.aside-about-help-body {
+  color: #eaeaea;
+  max-width: 18.75rem;
+  font-size: 14px;
+}
+
+.aside-about-help-form {
+  width: 100%;
+  padding-top: 1.875rem;
+  padding-bottom: 2.1875rem;
+  position: relative;
+}
+
+.aside-about-help-form input {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+
+.aside-about-help-form input::placeholder {
+  color: var(--note-color);
+  font-size: 13px;
+  font-style: italic;
+}
+.aside-about-help-form .icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--brand-dark);
+  pointer-events: none;
 }
