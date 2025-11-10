@@ -13,12 +13,12 @@
     ?? false);
     var bannerBlock = sections?.FirstOrDefault(b => b.Content is ContentModels.Banner);
 
+    var asideBlock = sections?.FirstOrDefault(b => b.Content is ContentModels.AsideAboutBlock);
+
     if (string.IsNullOrWhiteSpace(title))
     {
-        var item = match?.Content as ContentModels.ServiceDetailItem;
         title = key?.Replace("-", " ");
     }
-
     ViewData["ServiceTitle"] = title;
 }
 
@@ -32,5 +32,15 @@ else
     {
         @Html.GetBlockListHtml(new BlockListModel(new[] { bannerBlock }))
     }
-    @Html.GetBlockListHtml(new BlockListModel(new[] { match }))
+
+    <section class="service-details-section">
+        <div class="about-us-aside">
+            @if (asideBlock != null)
+            {
+                @Html.GetBlockListHtml(new BlockListModel(new[] { asideBlock }))
+            }
+        </div>
+
+        @Html.GetBlockListHtml(new BlockListModel(new[] { match }))
+    </section>
 }

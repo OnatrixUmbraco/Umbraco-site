@@ -1,0 +1,26 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    var content = (ContentModels.AsideAboutBlock)Model.Content;
+}
+
+<aside>
+    <p class="fw-semibold aside-about-header">@content.AsideAboutHeader</p>
+    <img class="aside-about-image" src="@content.AsideAboutImage!.Url()" />
+    <div class="aside-about-body">
+        @Html.Raw(@content.AsideAboutBody)
+    </div>
+    <div class="d-flex flex-column align-items-start aside-about-help-container"
+        style="background-image:url('@(content.AsideAboutHelpImage?.Url() ?? "")')">
+        <p class="fw-semibold aside-about-help-header">@content.AsideAboutHelpHeader</p>
+        <div class="aside-about-help-body">
+            @Html.Raw(@content.AsideAboutHelpBody)
+        </div>
+        <div class="aside-about-help-form">
+            <label class="sr-only" for="asideEmail">E-mail address</label>
+            <input id="asideEmail" type="email" placeholder="E-mail address" />
+            <span class="icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+        </div>
+    </div>
+</aside>
