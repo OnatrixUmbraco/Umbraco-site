@@ -9,6 +9,8 @@
     && !x.ContentType.Alias.InvariantContains("servicedetail")
     && !x.Name.InvariantEquals("Service Details Page"));
 
+    int index = 0;
+
     var isDetails = Model.ContentType.Alias.InvariantContains("servicedetail");
 
     var services = (root?.Children() ?? Enumerable.Empty<IPublishedContent>())
@@ -23,9 +25,9 @@
             Klarabergsviadukten 90, 111 64 Stockholm
         </p>
         <div class="socials">
+            <i class="fa-brands fa-facebook-f"></i>
             <i class="fa-brands fa-twitter"></i>
             <i class="fa-brands fa-linkedin-in"></i>
-            <i class="fa-brands fa-facebook-f"></i>
         </div>
     </div>
 </div>
@@ -38,9 +40,10 @@
         </a>
 
         <ul class="navbar-nav mb-2 mb-lg-0 nav-links">
-            <a class="nav-link" href="#">Projects</a>
+
             @foreach (var node in items)
             {
+
                 bool isActive = isDetails
                 ? (services != null && node.Id == services.Id)
                 : node.IsAncestorOrSelf(Model);
@@ -48,6 +51,12 @@
                 <li class="nav-item">
                     <a class="nav-link @(isActive ? "active" : null)" href="@node.Url()">@node.Name</a>
                 </li>
+                index++;
+
+                if (index == 2)
+                {
+                    <a class="nav-link" href="#">Projects</a>
+                }
             }
         </ul>
 
