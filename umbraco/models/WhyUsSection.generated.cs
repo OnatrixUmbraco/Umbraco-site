@@ -87,7 +87,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "16.2.0+4eae48e")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("whyUsLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link WhyUsLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "whyUsLink");
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> WhyUsLink => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link>>(_publishedValueFallback, "whyUsLink");
 
 		///<summary>
 		/// Primary Image

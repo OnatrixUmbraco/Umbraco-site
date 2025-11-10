@@ -233,7 +233,6 @@ a {
 }
 .breadcrumb li.active {
   color: var(--brand-gold);
-  font-weight: 600;
 }
 
 /* About section */
@@ -759,4 +758,79 @@ a {
 
 .cr-author {
   color: var(--brand-gold);
+}
+
+.service-details-section {
+  display: flex;
+}
+
+.service-details-section ul li::marker {
+  color: var(--brand-gold);
+}
+
+.service-details-container {
+  border-left: 1px solid #eaeaea;
+  justify-content: flex-start;
+  width: 75%;
+  padding-left: 54px;
+  margin: 0 auto;
+  margin-top: 4.8125rem;
+}
+
+.service-header-image,
+.services-secondary-image {
+  width: 47.9375rem;
+  margin-bottom: 31px;
+}
+
+.key-point,
+.service-header-text,
+.service-secondary-body-text {
+  font-size: 20px;
+  margin: 0 0 1rem;
+}
+
+.key-points,
+.service-body,
+.secondary-service-body {
+  font-size: 14px;
+}
+
+.key-points,
+.service-header-text,
+.service-body,
+.secondary-service-body {
+  width: 47.625rem;
+  padding-left: 0;
+}
+
+.key-points {
+  padding-left: 0.9375rem;
+}
+
+.key-points :is(ul, p) {
+  margin-bottom: 1rem;
+}
+
+.service-body :is(p, ul),
+.secondary-service-body p {
+  margin-bottom: 1rem;
+}
+
+.service-body ul,
+.secondary-service-body ul {
+  padding-left: 0.9375rem;
+}
+
+.secondary-service-body {
+  padding-bottom: 3.125rem;
+}
+
+.about-us-aside {
+  display: flex;
+  margin: 0;
+  width: 51%;
+  @media only screen and (min-width: 1080px) and (max-width: 2160px) {
+    max-width: 45rem;
+  }
 }

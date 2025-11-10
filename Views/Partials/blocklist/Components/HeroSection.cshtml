@@ -1,24 +1,30 @@
+@using Umbraco.Cms.Core.Models
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
 @{
     var content = (ContentModels.HeroSection)Model.Content;
+    Link? hero = content.HeroLink?.FirstOrDefault();
 }
 
-<section class="hero" style="Background-image:url('@(content.HeroImage?.Url() ?? "")')">
+<section class="hero" style="background-image:url('@(content.HeroImage?.Url() ?? "")')">
     <div class="page-wrapper">
         <div class="px-3 hero-container">
             <div class="col-d d-flex flex-column gap-4">
-                <h1 class="display-2 fw-bold lh-1 hero-header" style="color:#4F5955;">
-                    @content.HeroTitle</h1>
+                <h1 class="display-2 fw-bold lh-1 hero-header" style="color:#4F5955;">@content.HeroTitle</h1>
+
                 <div class="hero-text">
-                    @Html.Raw(content.HeroText)</div>
-                @if (content.HeroLink != null)
+                    @Html.Raw(content.HeroText)
+                </div>
+
+                @if (hero is not null)
                 {
-                    <button class="contact-us-button">
-                        <a class="text-white cursor-pinter fs-6 fw-bold text-decoration-none"
-                            href="@content.HeroLink.Url">@content.HeroLink.Name</a>
-                    </button>
+                    <a class="contact-us-button text-white cursor-pointer fs-6 fw-bold text-decoration-none"
+                        href="@hero.Url" target="@hero.Target" rel="@(hero.Target == "_blank" ? "noopener" : null)">
+                        @(string.IsNullOrWhiteSpace(hero.Name) ? hero.Url : hero.Name)
+                    </a>
                 }
             </div>
         </div>
+    </div>
 </section>
