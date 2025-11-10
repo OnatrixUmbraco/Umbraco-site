@@ -12,8 +12,8 @@
     var match = sections?.FirstOrDefault(b => (b.Content as ContentModels.ServiceDetailItem)?.UrlKey?.InvariantEquals(key)
     ?? false);
     var bannerBlock = sections?.FirstOrDefault(b => b.Content is ContentModels.Banner);
-
     var asideBlock = sections?.FirstOrDefault(b => b.Content is ContentModels.AsideAboutBlock);
+    var contactBlk = sections?.FirstOrDefault(b => b.Content is ContentModels.ContactInfo);
 
     if (string.IsNullOrWhiteSpace(title))
     {
@@ -42,5 +42,15 @@ else
         </div>
 
         @Html.GetBlockListHtml(new BlockListModel(new[] { match }))
+
     </section>
+
+    @await Html.PartialAsync(
+    "Partials/static/contactDetailsHelpForm",
+Model)
+
+@if (contactBlk != null)
+    {
+        @Html.GetBlockListHtml(new BlockListModel(new[] { contactBlk }))
+    }
 }
