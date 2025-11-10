@@ -1,0 +1,36 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceDetailsPage>
+
+@{
+    Layout = "mainLayout.cshtml";
+
+    var key = Context.Request.Query["key"].FirstOrDefault();
+    var title = Context.Request.Query["title"].FirstOrDefault();
+
+    var sections = Model.Value<BlockListModel>("sections");
+    var match = sections?.FirstOrDefault(b => (b.Content as ContentModels.ServiceDetailItem)?.UrlKey?.InvariantEquals(key)
+    ?? false);
+    var bannerBlock = sections?.FirstOrDefault(b => b.Content is ContentModels.Banner);
+
+    if (string.IsNullOrWhiteSpace(title))
+    {
+        var item = match?.Content as ContentModels.ServiceDetailItem;
+        title = key?.Replace("-", " ");
+    }
+
+    ViewData["ServiceTitle"] = title;
+}
+
+@if (match == null)
+{
+    <p>Service not found.</p>
+}
+else
+{
+    if (bannerBlock != null)
+    {
+        @Html.GetBlockListHtml(new BlockListModel(new[] { bannerBlock }))
+    }
+    @Html.GetBlockListHtml(new BlockListModel(new[] { match }))
+}

@@ -1,26 +1,56 @@
 ﻿@using Umbraco.Extensions
 @using Umbraco.Cms.Core.Routing
-@inject IPublishedUrlProvider PublishedUrlProvider
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>
+@inject Umbraco.Cms.Core.Routing.IPublishedUrlProvider UrlProvider
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
 
 @{
-    var trail = Model.Ancestors()
-    .OrderBy(x => x.Level)
-    .ToList();
+    var isDetails = Model.ContentType.Alias.InvariantContains("servicedetail");
+    var root = Model.Root();
+
+    var services = (root?.Children() ?? Enumerable.Empty<IPublishedContent>())
+    .FirstOrDefault(x =>
+    (x.ContentType.Alias.InvariantContains("service")
+    && !x.ContentType.Alias.InvariantContains("detail"))
+    || x.Name.InvariantEquals("Services"));
 }
 
-@if (trail.Any())
+@if (!isDetails)
 {
+    var trail = Model.Ancestors().OrderBy(x => x.Level).ToList();
+    if (trail.Any())
+    {
+        <section class="page-title">
+            <div class="breadcrumb-container">
+                <ul class="breadcrumb">
+                    @foreach (var node in trail)
+                    {
+                        var text = node.Level == 1 ? "Home" : node.Name;
+                        <li><a class="breadcrumb-link" href="@node.Url(UrlProvider)">@text</a></li>
+                        <span><i class="fa-solid fa-chevron-right"></i></span>
+                    }
+                    <li class="active">@Model.Name</li>
+                </ul>
+            </div>
+        </section>
+    }
+}
+else
+{
+    var serviceTitle = (ViewData["ServiceTitle"] as string)
+    ?? Context.Request.Query["title"].FirstOrDefault()
+    ?? Model.Name;
+
     <section class="page-title">
         <div class="breadcrumb-container">
             <ul class="breadcrumb">
-                @foreach (var node in trail)
-                {
-                    var text = node.Level == 1 ? "Home" : node.Name;
-                    <li><a class="breadcrumb-link" href="@node.Url(PublishedUrlProvider)">@text</a></li>
-                }
+                <li><a class="breadcrumb-link" href="@root?.Url(UrlProvider)">Home</a></li>
                 <span><i class="fa-solid fa-chevron-right"></i></span>
-                <li class="active">@Model.Name</li>
+                @if (services != null)
+                {
+                    <li><a class="breadcrumb-link" href="@services.Url(UrlProvider)">@services.Name</a></li>
+                    <span><i class="fa-solid fa-chevron-right"></i></span>
+                }
+                <li class="active">@serviceTitle</li>
             </ul>
         </div>
     </section>
