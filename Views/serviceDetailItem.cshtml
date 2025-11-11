@@ -1,0 +1,53 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceDetailItem1>
+
+@{
+    Layout = "mainLayout.cshtml";
+    var sections = Model.Value<BlockListModel>("sections");
+    var bannerBlocks = Model.Value<BlockListModel>("banner");
+    var contactBlocks = Model.Value<BlockListModel>("contact");
+    var aside = Model.Value<BlockListModel>("aside");
+    var pageTitle = Model.Value<string>("pageTitle");
+    ViewData["ServiceTitle"] = !string.IsNullOrWhiteSpace(pageTitle) ? pageTitle : Model.Name;
+
+}
+
+@Html.GetBlockListHtml(bannerBlocks)
+
+
+<section class="service-details-section">
+    <div class="about-us-aside">
+        @Html.GetBlockListHtml(aside)
+    </div>
+
+    <div class="d-flex align-items-start flex-column service-details-container">
+        <div class="d-flex align-items-start flex-column service-details-header-container">
+            @if (Model.ServiceHeaderImage != null)
+            {
+                <img class="service-header-image" src="@Model.ServiceHeaderImage.Url()" />
+            }
+            <p class="fw-bold key-point">@Model.KeyPointLabel</p>
+            <div class="key-points">@Html.Raw(Model.KeyPoints)</div>
+        </div>
+
+        <div class="d-flex align-items-start flex-column service-details-header-container">
+            <p class="fw-bold service-header-text">@Model.ServiceHeaderText</p>
+            <div class="service-body">@Html.Raw(Model.ServiceBody)</div>
+
+            @if (Model.ServiceSecondaryImage != null)
+            {
+                <img class="services-secondary-image" src="@Model.ServiceSecondaryImage.Url()" />
+            }
+            <p class="fw-bold service-secondary-body-text">@Model.ServiceSecondaryHeaderText</p>
+            <div class="secondary-service-body">@Html.Raw(Model.SecondaryServiceBody)</div>
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync(
+"Partials/static/contactDetailsHelpForm",
+Model)
+
+
+@Html.GetBlockListHtml(contactBlocks)

@@ -6,16 +6,9 @@
     var root = Model.Root();
     var items = (root?.Children() ?? Enumerable.Empty<IPublishedContent>())
     .Where(x => x.IsVisible()
-    && !x.ContentType.Alias.InvariantContains("servicedetail")
-    && !x.Name.InvariantEquals("Service Details Page"));
+    );
 
-    var isDetails = Model.ContentType.Alias.InvariantContains("servicedetail");
-
-    var services = (root?.Children() ?? Enumerable.Empty<IPublishedContent>())
-    .FirstOrDefault(x =>
-    (x.ContentType.Alias.InvariantContains("service")
-    && !x.ContentType.Alias.InvariantContains("detail"))
-    || x.Name.InvariantEquals("Services"));
+    int index = 0;
 }
 <div class="upper-nav">
     <div class="nav-address d-flex" style="background-color:#4F5955">
@@ -32,22 +25,24 @@
 
 <nav class="shadow-sm navbar">
     <div class="d-flex nav-container">
-        <a class="d-flex gap-1 logo-container" href="@(root?.Url() ?? Url.Content("~/"))">
-            <img src="../media/images/onatrix-logo.svg" alt="Logo">
-            <img src="../media/images/onatrix-text.svg" alt="Logo">
+        <a class="d-flex gap-1 logo-container" href="@(Model.Root()?.Url() ?? Url.Content("~/"))">
+            <img src="@Url.Content("~/media/images/onatrix-logo.svg")" alt="Logo">
+            <img src="@Url.Content("~/media/images/onatrix-text.svg")" alt="Onatrix">
         </a>
 
         <ul class="navbar-nav mb-2 mb-lg-0 nav-links">
-            <a class="nav-link" href="#">Projects</a>
             @foreach (var node in items)
             {
-                bool isActive = isDetails
-                ? (services != null && node.Id == services.Id)
-                : node.IsAncestorOrSelf(Model);
+                bool isActive = node.IsAncestorOrSelf(Model);
 
                 <li class="nav-item">
                     <a class="nav-link @(isActive ? "active" : null)" href="@node.Url()">@node.Name</a>
                 </li>
+                index++;
+                if (index == 2)
+                {
+                    <a class="nav-link" href="#">Projects</a>
+                }
             }
         </ul>
 
