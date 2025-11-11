@@ -3,26 +3,21 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
 
 @{
-    var c = (ContentModels.ServiceCard)Model.Content;
+    var content = (ContentModels.ServiceCard)Model.Content;
 
-    Link? link = c.ServiceLink?.FirstOrDefault();
+    var link = content.ServiceLink?.FirstOrDefault();
     var url = link?.Url ?? "#";
-
-    if (link != null && !string.IsNullOrWhiteSpace(link.Name))
-    {
-        var sep = url.Contains("?") ? "&" : "?";
-        url = $"{url}{sep}title={Uri.EscapeDataString(link.Name)}";
-    }
 }
+
 <article class="service-card">
     <a href="@url" class="service-card-link">
-        <h4 class="service-card-header">@c.ServiceCardHeader</h4>
+        <h4 class="service-card-header">@content.ServiceCardHeader</h4>
         <div class="service-card-media">
-            @if (c.ServiceCardImage != null)
+            @if (content.ServiceCardImage != null)
             {
-                <img src="@c.ServiceCardImage.Url()" alt="">
+                <img src="@content.ServiceCardImage.Url()">
             }
         </div>
-        <p class="service-card-text">@c.ServiceCardText</p>
+        <p class="service-card-text">@content.ServiceCardText</p>
     </a>
 </article>

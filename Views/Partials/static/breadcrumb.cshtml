@@ -4,53 +4,24 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
 
 @{
-    var isDetails = Model.ContentType.Alias.InvariantContains("servicedetail");
     var root = Model.Root();
-
-    var services = (root?.Children() ?? Enumerable.Empty<IPublishedContent>())
-    .FirstOrDefault(x =>
-    (x.ContentType.Alias.InvariantContains("service")
-    && !x.ContentType.Alias.InvariantContains("detail"))
-    || x.Name.InvariantEquals("Services"));
-}
-
-@if (!isDetails)
-{
     var trail = Model.Ancestors().OrderBy(x => x.Level).ToList();
-    if (trail.Any())
-    {
-        <section class="page-title">
-            <div class="breadcrumb-container">
-                <ul class="breadcrumb">
-                    @foreach (var node in trail)
-                    {
-                        var text = node.Level == 1 ? "Home" : node.Name;
-                        <li><a class="breadcrumb-link" href="@node.Url(UrlProvider)">@text</a></li>
-                        <span><i class="fa-solid fa-chevron-right"></i></span>
-                    }
-                    <li class="active">@Model.Name</li>
-                </ul>
-            </div>
-        </section>
-    }
 }
-else
-{
-    var serviceTitle = (ViewData["ServiceTitle"] as string)
-    ?? Context.Request.Query["title"].FirstOrDefault()
-    ?? Model.Name;
 
+@if (trail.Any())
+{
     <section class="page-title">
         <div class="breadcrumb-container">
             <ul class="breadcrumb">
-                <li><a class="breadcrumb-link" href="@root?.Url(UrlProvider)">Home</a></li>
-                <span><i class="fa-solid fa-chevron-right"></i></span>
-                @if (services != null)
+                @foreach (var node in trail)
                 {
-                    <li><a class="breadcrumb-link" href="@services.Url(UrlProvider)">@services.Name</a></li>
+                    var text = node.Level == 1 ? "Home" : node.Name;
+                    <li>
+                        <a class="breadcrumb-link" href="@node.Url(UrlProvider)">@text</a>
+                    </li>
                     <span><i class="fa-solid fa-chevron-right"></i></span>
                 }
-                <li class="active">@serviceTitle</li>
+                <li class="active">@Model.Name</li>
             </ul>
         </div>
     </section>

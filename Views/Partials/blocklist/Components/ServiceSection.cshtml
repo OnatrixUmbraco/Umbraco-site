@@ -2,30 +2,27 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
 
 @{
-    var content = (ContentModels.ServiceSection)Model.Content;
-    var settings = Model.Settings as ContentModels.ServiceSettings;
-    var sectionColor = settings?.ServiceBgColor?.Color ?? "fff";
+  var content = (ContentModels.ServiceSection)Model.Content;
+  var settings = Model.Settings as ContentModels.ServiceSettings;
+  var sectionColor = settings?.ServiceBgColor?.Color ?? "fff";
 }
-
 <section class="services" style="background:@sectionColor">
-    <div class="service-container">
-        <div class="service-head">
-            @if (settings?.ShowServiceLabel == true)
-            {
-                <h2 class="service-label">@content.ServiceLabel</h2>
-            }
-            <div class="service-section-title">
-                @Html.Raw(content.ServiceTitle)
-            </div>
-        </div>
-
-        <div class="service-grid">
-            @foreach (var item in content.ServiceCardList!)
-            {
-                @await Html.PartialAsync(
-                "Partials/blocklist/Components/ServiceCard",
-                        item)
-                        }
-        </div>
+  <div class="service-container">
+    <div class="service-head">
+      @if (settings?.ShowServiceLabel == true)
+      {
+        <h2 class="service-label">@content.ServiceLabel</h2>
+      }
+      <div class="service-section-title">
+        @Html.Raw(content.ServiceTitle)
+      </div>
     </div>
+
+    <div class="service-grid">
+      @foreach (var card in content.ServiceCardList ?? Enumerable.Empty<Umbraco.Cms.Core.Models.Blocks.BlockListItem>())
+      {
+        @await Html.PartialAsync("Partials/blocklist/Components/ServiceCard", card)
+      }
+    </div>
+  </div>
 </section>

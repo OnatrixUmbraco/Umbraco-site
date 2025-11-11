@@ -1,0 +1,31 @@
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceDetailItem1>
+@{
+  Layout = "mainLayout.cshtml";
+  var content = Model;
+}
+<section class="service-details-section">
+  <div class="d-flex align-items-start flex-column service-details-container">
+    <div class="d-flex align-items-start flex-column service-details-header-container">
+      @if (content.ServiceHeaderImage != null)
+      {
+        <img class="service-header-image" src="@content.ServiceHeaderImage.Url()" />
+      }
+      <p class="fw-bold key-point">@content.KeyPointLabel</p>
+      <div class="key-points">@Html.Raw(content.KeyPoints)</div>
+    </div>
+
+    <div class="d-flex align-items-start flex-column service-details-header-container">
+      <p class="fw-bold service-header-text">@content.ServiceHeaderText</p>
+      <div class="service-body">@Html.Raw(content.ServiceBody)</div>
+
+      @if (content.ServiceSecondaryImage != null)
+      {
+        <img class="services-secondary-image" src="@content.ServiceSecondaryImage.Url()" />
+      }
+
+      <p class="fw-bold service-secondary-body-text">@content.ServiceSecondaryHeaderText</p>
+      <div class="secondary-service-body">@Html.Raw(content.SecondaryServiceBody)</div>
+    </div>
+  </div>
+</section>

@@ -213,11 +213,9 @@ a {
 
 /* Breadcrumb */
 .breadcrumb {
-  list-style: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0;
+  gap: 8px;
   margin: 0;
 }
 
@@ -233,6 +231,7 @@ a {
 }
 .breadcrumb li.active {
   color: var(--brand-gold);
+  font-size: 14px !important;
 }
 
 /* About section */
