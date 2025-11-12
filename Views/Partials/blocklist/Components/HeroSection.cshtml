@@ -11,7 +11,7 @@
     <div class="page-wrapper">
         <div class="px-3 hero-container">
             <div class="col-d d-flex flex-column gap-4">
-                <h1 class="display-2 fw-bold lh-1 hero-header" style="color:#4F5955;">@content.HeroTitle</h1>
+                <h1 class="display-2 fw-bold lh-1 hero-header">@content.HeroTitle</h1>
 
                 <div class="hero-text">
                     @Html.Raw(content.HeroText)
@@ -20,8 +20,8 @@
                 @if (hero is not null)
                 {
                     <a class="contact-us-button text-white cursor-pointer fs-6 fw-bold text-decoration-none"
-                        href="@hero.Url" target="@hero.Target" rel="@(hero.Target == "_blank" ? "noopener" : null)">
-                        @(string.IsNullOrWhiteSpace(hero.Name) ? hero.Url : hero.Name)
+                        href="@hero.Url">
+                        @hero.Name
                     </a>
                 }
             </div>
