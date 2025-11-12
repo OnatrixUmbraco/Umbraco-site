@@ -36,12 +36,12 @@
                 bool isActive = node.IsAncestorOrSelf(Model);
 
                 <li class="nav-item">
-                    <a class="nav-link @(isActive ? "active" : null)" href="@node.Url()">@node.Name</a>
+                    <a class="fw-bold nav-link @(isActive ? "active" : null)" href="@node.Url()">@node.Name</a>
                 </li>
                 index++;
                 if (index == 2)
                 {
-                    <a class="nav-link" href="#">Projects</a>
+                    <a class="fw-bold nav-link" href="#">Projects</a>
                 }
             }
         </ul>

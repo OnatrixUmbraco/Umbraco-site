@@ -12,7 +12,7 @@
 <section class="contact" style="Background-image:url('@(content.BackgroundImage?.Url() ?? "")')">
 	<div class="page-wrapper">
 		<div class="contact-header-container">
-			<h1 class=" mb-2 fw-bold contact-header" style="color:#4F5955;">@titleToShow </h1>
+			<h1 class="mb-2 contact-header">@titleToShow </h1>
 			@await Html.PartialAsync("Partials/static/breadcrumb", Umbraco.AssignedContentItem)
 		</div>
 </section>
